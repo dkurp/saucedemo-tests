@@ -50,7 +50,6 @@ test.describe('Inventory page', () =>{
             prices.map(price => price.textContent.trim())
         );
 
-        console.log(itemPricesLohi)
         //check if sorting descending is working correctly
         await expect(inventory.areArraysReversed(itemPricesLohi, itemTitlesHilo)).toBe(true)
     })

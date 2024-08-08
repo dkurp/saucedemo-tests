@@ -49,11 +49,11 @@ export class Inventory {
     }
 
     async addAllItemsToCart(){
-        await inventory.cartAddBackpack.click()
-        await inventory.cartAddJacket.click()
-        await inventory.cartAddLight.click()
-        await inventory.cartAddOnesie.click()
-        await inventory.cartAddTShirt.click()
-        await inventory.cartAddRed.click()
+        await this.cartAddBackpack.click()
+        await this.cartAddJacket.click()
+        await this.cartAddLight.click()
+        await this.cartAddOnesie.click()
+        await this.cartAddTShirt.click()
+        await this.cartAddRed.click()
     }
 }
