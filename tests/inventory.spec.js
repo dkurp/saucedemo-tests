@@ -11,6 +11,17 @@ test.describe('Inventory page', () =>{
         await expect(inventory.inventoryContainer).toBeVisible()
     })
 
+    test('Burger menu elements', async({page}) => {
+        const inventory = new Inventory(page)
+
+        await inventory.burgerMenu.click()
+
+        await expect(inventory.menuAllItems).toHaveText('All Items')        
+        await expect(inventory.menuAbout).toHaveText('About')
+        await expect(inventory.menuLogout).toHaveText('Logout')
+        await expect(inventory.menuResetApp).toHaveText('Reset App State')
+    });
+
     test('6 inventory items are present', async({page}) =>{
         const inventory = new Inventory(page)
 
@@ -57,31 +68,27 @@ test.describe('Inventory page', () =>{
     test('Add items to cart', async({page}) =>{
         const inventory = new Inventory(page)
 
+        let count = async() => {return await inventory.shoppingCartBadge.innerText()}
+
         let emptyCart = await inventory.shoppingCartBadge.count()
         await expect(emptyCart).toEqual(0)
 
         await inventory.cartAddBackpack.click()
-        let add1 = await inventory.shoppingCartBadge.innerText()
-        await expect(add1).toEqual('1')
+        await expect(await count()).toEqual('1')
 
         await inventory.cartAddJacket.click()
-        let add2 = await inventory.shoppingCartBadge.innerText()
-        await expect(add2).toEqual('2')
+        await expect(await count()).toEqual('2')
 
         await inventory.cartAddLight.click()
-        let add3 = await inventory.shoppingCartBadge.innerText()
-        await expect(add3).toEqual('3')
+        await expect(await count()).toEqual('3')
 
         await inventory.cartAddOnesie.click()
-        let add4 = await inventory.shoppingCartBadge.innerText()
-        await expect(add4).toEqual('4')
+        await expect(await count()).toEqual('4')
 
         await inventory.cartAddTShirt.click()
-        let add5 = await inventory.shoppingCartBadge.innerText()
-        await expect(add5).toEqual('5')
+        await expect(await count()).toEqual('5')
 
         await inventory.cartAddRed.click()
-        let add6 = await inventory.shoppingCartBadge.innerText()
-        await expect(add6).toEqual('6')
+        await expect(await count()).toEqual('6')
     })
 })
